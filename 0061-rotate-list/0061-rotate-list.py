@@ -14,16 +14,20 @@ class Solution:
         while(current != None):
             size += 1
             current = current.next
-        if(k > size):
+        if(k >= size):
             k = k%size
+        if(k == 0):
+            return head
+        
+        first = head
+        second = head
         while(k > 0):
-            previous = None
-            current = head
-            while(current.next != None):
-                previous = current
-                current = current.next
-            current.next = head
-            previous.next = None
-            head = current
+            first = first.next
             k -= 1
+        while(first.next != None):
+            first = first.next
+            second = second.next
+        first.next = head
+        head = second.next
+        second.next = None
         return head
