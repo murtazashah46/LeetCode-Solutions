@@ -1,7 +1,11 @@
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
     
-        nums = sorted(list(set(nums)))
+        nums = list(set(nums))
         if(len(nums) < 3):
-            return nums[-1]
-        return nums[-3]
+            return max(nums)
+        
+        for i in range(3):
+            answer = max(nums)
+            nums.pop(nums.index(answer))
+        return answer
